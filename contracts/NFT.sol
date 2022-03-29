@@ -10,40 +10,6 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 contract HACK60NFT is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
-    mapping(string => address) mintableNFT;
-
-    mapping(string => uint8) existingURIs;
-
-    function setMintableNFT(
-        string memory metadataURI,
-        address to
-    ) public onlyOwner {
-        require(existingURIs[metadataURI] != 1, "NFT already minted");
-        require(mintableNFT[metadataURI]==address(0), "Can't set another address");
-
-        mintableNFT[metadataURI] = msg.sender;
-    }
-
-    function mintNFT(
-        string memory metadataURI
-    ) public returns (uint256) {
-        require(existingURIs[metadataURI] != 1, "NFT already minted");
-        require(mintableNFT[metadataURI]==msg.sender, "Can't mint this NFT");
-
-        uint256 newItemId = _tokenIdCounter.current();
-        _tokenIdCounter.increment();
-        existingURIs[metadataURI] = 1;
-
-        _mint(msg.sender, newItemId);
-        _setTokenURI(newItemId, metadataURI);
-
-        return newItemId;
-    }
-
-    function isContentOwned(string memory uri) public view returns (bool) {
-        return existingURIs[uri] == 1;
-    }
-
     Counters.Counter private _tokenIdCounter;
 
     constructor() ERC721("HACK6.0NFT", "6.0") {}
