@@ -18,7 +18,11 @@ contract HACK60NFT is ERC721, ERC721URIStorage, Ownable {
         return "ipfs://";
     }
 
+    mapping (string => bool) public _uriSet;
+
     function safeMint(address to, string memory uri) public onlyOwner {
+        require(_uriSet[uri] == false, "URI already minted");
+        _uriSet[uri] = true;
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);

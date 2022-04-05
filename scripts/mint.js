@@ -5,6 +5,10 @@
 // Runtime Environment's members available in the global scope.
 const hre = require("hardhat");
 
+const address = "0xB9143F6B2D837F306B9c3ABE43cD13a7066C247D"
+const artifact = "../artifacts/contracts/NFT.sol/HACK60NFT.json"
+const provider = new hre.ethers.providers.JsonRpcProvider(process.env.MUMBAI_URL);
+
 async function main() {
   // Hardhat always runs the compile task when running scripts with its command
   // line interface.
@@ -14,12 +18,14 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const NFT = await hre.ethers.getContractFactory("HACK60NFT");
-  const nft = await NFT.deploy();
+  const NFT = await hre.ethers.getContractAt("HACK60NFT", address, new ethers.Wallet(process.env.PRIVATE_KEY, provider));
 
-  await nft.deployed();
+  let name = await NFT.name()
+  console.log("name:", name)
 
-  console.log("NFT deployed to:", nft.address);
+  console.log("NFT address:", NFT.address);
+
+  NFT
 }
 
 // We recommend this pattern to be able to use async/await everywhere
