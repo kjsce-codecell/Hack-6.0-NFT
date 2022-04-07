@@ -4,9 +4,10 @@
 // When running the script with `npx hardhat run <script>` you'll find the Hardhat
 // Runtime Environment's members available in the global scope.
 const hre = require("hardhat");
+const mintdata = require("../mintlist.json");
 
 const address = "0xB9143F6B2D837F306B9c3ABE43cD13a7066C247D"
-const artifact = "../artifacts/contracts/NFT.sol/HACK60NFT.json"
+// const artifact = "../artifacts/contracts/NFT.sol/HACK60NFT.json"
 const provider = new hre.ethers.providers.JsonRpcProvider(process.env.MUMBAI_URL);
 
 async function main() {
@@ -25,7 +26,11 @@ async function main() {
 
   console.log("NFT address:", NFT.address);
 
-  NFT
+  const metadatafolderCID = "CID/"
+
+  for(let i=0;i<mintdata.length;i++){
+    let res = await NFT.safeMint(mintdata[i]["wallet_address"],metadatafolderCID+mintdata[i]["nft_save_name"]+".json")
+  }
 }
 
 // We recommend this pattern to be able to use async/await everywhere
