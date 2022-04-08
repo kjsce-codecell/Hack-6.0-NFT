@@ -34,7 +34,7 @@ async function main() {
 
   const metadatafolderCID = "QmdnvdGVL76fJQCKsJY7gn8ap83G7PBxzeExFL1oKspTrs/"
 
-  for(let i=69;i<mintdata.length;i++){
+  for(let i=90;i<mintdata.length;i++){
     let res = await NFT.safeMint(mintdata[i]["walletAddress"],metadatafolderCID+mintdata[i]["nft_save_name"]+".json",
       {
         gasPrice: ethers.utils.parseUnits('40','gwei').toString(),
