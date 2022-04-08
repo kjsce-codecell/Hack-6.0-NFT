@@ -9,7 +9,6 @@ const mintdata = require("../mintlist.json");
 const address = "0xB9143F6B2D837F306B9c3ABE43cD13a7066C247D"
 // const address = "0xB9143F6B2D837F306B9c3ABE43cD13a7066C247D"
 // const artifact = "../artifacts/contracts/NFT.sol/HACK60NFT.json"
-
 const provider = new hre.ethers.providers.JsonRpcProvider(process.env.MAINPOLY_URL);
 
 async function main() {
@@ -25,19 +24,15 @@ async function main() {
 
   let name = await NFT.name()
   console.log("name:", name)
-
+  
   console.log("NFT address:", NFT.address);
 
-  const metadatafolderCID = "QmbU7iQQ4ctLUpUUXKVkwKuCyczgaBQL14Yhb6BH17wDBo/"
-
-  for(let i=0;i<mintdata.length;i++){
-    let res = await NFT.safeMint(mintdata[i]["wallet_address"],metadatafolderCID+mintdata[i]["nft_save_name"]+".json",
-      {
-        gasPrice: ethers.utils.parseUnits('30','gwei').toString(),
-        gasLimit: 189006
-      })
-    console.log(res)
+  let res = await NFT.safeMint(mintdata[0]["wallet_address"],mintdata[0]["nft_save_name"],
+  {
+    gasPrice: ethers.utils.parseUnits('30.150906076','gwei').toString(),
+    gasLimit: 189006
   }
+  )
 }
 
 // We recommend this pattern to be able to use async/await everywhere
