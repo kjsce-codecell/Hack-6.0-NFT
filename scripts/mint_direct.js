@@ -29,10 +29,11 @@ async function main() {
 
   let res = await NFT.safeMint(mintdata[0]["wallet_address"],mintdata[0]["nft_save_name"],
   {
-    gasPrice: ethers.utils.parseUnits('30.150906076','gwei').toString(),
-    gasLimit: 189006
+    gasPrice: ethers.utils.parseUnits('40','gwei').toString(),
+    gasLimit: 230400
   }
   )
+  console.log(res)
 }
 
 // We recommend this pattern to be able to use async/await everywhere
