@@ -12,6 +12,10 @@ const address = "0xB9143F6B2D837F306B9c3ABE43cD13a7066C247D"
 
 const provider = new hre.ethers.providers.JsonRpcProvider(process.env.MAINPOLY_URL);
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function main() {
   // Hardhat always runs the compile task when running scripts with its command
   // line interface.
@@ -28,15 +32,16 @@ async function main() {
 
   console.log("NFT address:", NFT.address);
 
-  const metadatafolderCID = "QmbU7iQQ4ctLUpUUXKVkwKuCyczgaBQL14Yhb6BH17wDBo/"
+  const metadatafolderCID = "QmdnvdGVL76fJQCKsJY7gn8ap83G7PBxzeExFL1oKspTrs/"
 
-  for(let i=0;i<mintdata.length;i++){
-    let res = await NFT.safeMint(mintdata[i]["wallet_address"],metadatafolderCID+mintdata[i]["nft_save_name"]+".json",
+  for(let i=18;i<mintdata.length;i++){
+    let res = await NFT.safeMint(mintdata[i]["walletAddress"],metadatafolderCID+mintdata[i]["nft_save_name"]+".json",
       {
-        gasPrice: ethers.utils.parseUnits('30','gwei').toString(),
-        gasLimit: 189006
+        gasPrice: ethers.utils.parseUnits('40','gwei').toString(),
+        gasLimit: 230400
       })
     console.log(res)
+    await sleep(4000);
   }
 }
 
