@@ -12,7 +12,7 @@ contract HACK60NFT is ERC721, ERC721URIStorage, Ownable {
 
     Counters.Counter private _tokenIdCounter;
 
-    constructor() ERC721("HACK6.0NFT", "6.0") {}
+    constructor() ERC721("HACK 6.0 NFT", "Hack6.0") {}
 
     function _baseURI() internal pure override returns (string memory) {
         return "ipfs://";

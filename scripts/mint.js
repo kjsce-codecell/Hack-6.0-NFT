@@ -6,7 +6,8 @@
 const hre = require("hardhat");
 const mintdata = require("../mintlist.json");
 
-const address = "0xB9143F6B2D837F306B9c3ABE43cD13a7066C247D"
+const address = "0x57846e3D4f9Da6356DC8eEB25Bb26F331fd1B474"
+// const address = "0xB9143F6B2D837F306B9c3ABE43cD13a7066C247D"
 // const artifact = "../artifacts/contracts/NFT.sol/HACK60NFT.json"
 const provider = new hre.ethers.providers.JsonRpcProvider(process.env.MUMBAI_URL);
 
@@ -26,10 +27,11 @@ async function main() {
 
   console.log("NFT address:", NFT.address);
 
-  const metadatafolderCID = "CID/"
+  const metadatafolderCID = "QmbU7iQQ4ctLUpUUXKVkwKuCyczgaBQL14Yhb6BH17wDBo/"
 
   for(let i=0;i<mintdata.length;i++){
     let res = await NFT.safeMint(mintdata[i]["wallet_address"],metadatafolderCID+mintdata[i]["nft_save_name"]+".json")
+    console.log(mintdata[i]["nft_save_name"]+" done")
   }
 }
 
