@@ -7,8 +7,8 @@ const hre = require("hardhat");
 const mintdata = require("../mintlist.json");
 
 const address = "0x57846e3d4f9da6356dc8eeb25bb26f331fd1b474"
-// const address = "0xB9143F6B2D837F306B9c3ABE43cD13a7066C247D"
 // const artifact = "../artifacts/contracts/NFT.sol/HACK60NFT.json"
+
 const provider = new hre.ethers.providers.JsonRpcProvider(process.env.MUMBAI_URL);
 
 async function main() {

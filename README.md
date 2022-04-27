@@ -1,4 +1,12 @@
-# Advanced Sample Hardhat Project
+
+
+# KJSCE Hack 6.0 Verification NFT
+
+<img src="assets/banner.png"></img>
+
+## View NFT Collection on [OpenSea](https://opensea.io/collection/hack-6-0-nft)
+
+<!-- # Advanced Sample Hardhat Project
 
 This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
 
@@ -39,4 +47,4 @@ Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_
 
 ```shell
 npx hardhat verify --network ropsten DEPLOYED_CONTRACT_ADDRESS "Hello, Hardhat!"
-```
+``` -->

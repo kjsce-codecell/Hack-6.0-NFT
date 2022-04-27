@@ -32,7 +32,7 @@ async function main() {
 
   console.log("NFT address:", NFT.address);
 
-  const metadatafolderCID = "QmdnvdGVL76fJQCKsJY7gn8ap83G7PBxzeExFL1oKspTrs/"
+  const metadatafolderCID = "metadata_CID/"
 
   for(let i=15;i<mintdata.length;i++){
     let res = await NFT.safeMint(mintdata[i]["walletAddress"],metadatafolderCID+mintdata[i]["nft_save_name"]+".json",
