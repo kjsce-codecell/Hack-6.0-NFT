@@ -6,9 +6,7 @@
 const hre = require("hardhat");
 const mintdata = require("../mintlist.json");
 
-const address = "0xB9143F6B2D837F306B9c3ABE43cD13a7066C247D"
-// const address = "0xB9143F6B2D837F306B9c3ABE43cD13a7066C247D"
-// const artifact = "../artifacts/contracts/NFT.sol/HACK60NFT.json"
+const address = "0xb9143f6b2d837f306b9c3abe43cd13a7066c247d"
 
 const provider = new hre.ethers.providers.JsonRpcProvider(process.env.MAINPOLY_URL);
 
@@ -34,14 +32,13 @@ async function main() {
 
   const metadatafolderCID = "metadata_CID/"
 
-  for(let i=15;i<mintdata.length;i++){
+  for(let i=0;i<mintdata.length;i++){
     let res = await NFT.safeMint(mintdata[i]["walletAddress"],metadatafolderCID+mintdata[i]["nft_save_name"]+".json",
       {
         gasPrice: ethers.utils.parseUnits('40','gwei').toString(),
         gasLimit: 230400
       })
     console.log(res)
-    break
   }
 }
 

@@ -6,10 +6,15 @@
 const hre = require("hardhat");
 const mintdata = require("../mintlist.json");
 
-const address = "0x57846e3d4f9da6356dc8eeb25bb26f331fd1b474"
+const address = "0xB9143F6B2D837F306B9c3ABE43cD13a7066C247D"
+// const address = "0xB9143F6B2D837F306B9c3ABE43cD13a7066C247D"
 // const artifact = "../artifacts/contracts/NFT.sol/HACK60NFT.json"
 
 const provider = new hre.ethers.providers.JsonRpcProvider(process.env.MUMBAI_URL);
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 async function main() {
   // Hardhat always runs the compile task when running scripts with its command
@@ -24,15 +29,19 @@ async function main() {
 
   let name = await NFT.name()
   console.log("name:", name)
-  
+
   console.log("NFT address:", NFT.address);
 
-  await NFT.safeMint(mintdata[0]["wallet_address"],mintdata[0]["nft_save_name"],
-  {
-    gasPrice: ethers.utils.parseUnits('30','gwei').toString(),
-    gasLimit: 189006
+  const metadatafolderCID = "metadata_CID/"
+
+  for(let i=0;i<mintdata.length;i++){
+    let res = await NFT.safeMint(mintdata[i]["walletAddress"],metadatafolderCID+mintdata[i]["nft_save_name"]+".json",
+      {
+        gasPrice: ethers.utils.parseUnits('40','gwei').toString(),
+        gasLimit: 230400
+      })
+    console.log(res)
   }
-  )
 }
 
 // We recommend this pattern to be able to use async/await everywhere
